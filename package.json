@@ -11,7 +11,8 @@
   "exports": {
     ".": {
       "types": "./dist/slideshow-api.d.ts",
-      "import": "./dist/slideshow-api.js"
+      "import": "./dist/slideshow-api.js",
+      "default": "./dist/slideshow-api.js"
     }
   },
   "scripts": {
