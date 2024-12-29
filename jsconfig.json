@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "checkJs": true,
+        "allowJs": true,
+        "declaration": true,
+        "resolveJsonModule": true,
+        "maxNodeModuleJsDepth": 1
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "src/connectors/*.{bat,sh,scpt}"]
+}
