@@ -10,23 +10,23 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Connector_process, _Connector_transformer;
-import { platform } from 'node:os';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { execa } from 'execa';
-import { Transform } from 'node:stream';
+import { platform } from "node:os";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { execa } from "execa";
+import { Transform } from "node:stream";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /** @type {Record<string, string>} */
 const connectors = {
-    "darwin-keynote": "connectors/osx/kn5.sh",
-    "darwin-keynote5": "connectors/osx/kn5.sh",
-    "darwin-keynote6": "connectors/osx/kn6.sh",
-    "darwin-powerpoint": "connectors/osx/ppt2011.sh",
-    "darwin-powerpoint2011": "connectors/osx/ppt2011.sh",
-    "darwin-powerpoint2016": "connectors/osx/ppt2011.sh",
-    "win32-powerpoint": "connectors/win/ppt2010.bat",
-    "win32-powerpoint2010": "connectors/win/ppt2010.bat",
-    "win32-powerpoint2013": "connectors/win/ppt2010.bat"
+    "darwin-keynote": "connectors/kn5.sh",
+    "darwin-keynote5": "connectors/kn5.sh",
+    "darwin-keynote6": "connectors/kn6.sh",
+    "darwin-powerpoint": "connectors/ppt2011.sh",
+    "darwin-powerpoint2011": "connectors/ppt2011.sh",
+    "darwin-powerpoint2016": "connectors/ppt2011.sh",
+    "win32-powerpoint": "connectors/ppt2010.bat",
+    "win32-powerpoint2010": "connectors/ppt2010.bat",
+    "win32-powerpoint2013": "connectors/ppt2010.bat",
 };
 /**
  * @typedef {Object} ConnectorResponse
@@ -49,8 +49,8 @@ export class Connector {
         }
         const filename = join(__dirname, connectorPath);
         __classPrivateFieldSet(this, _Connector_process, execa(filename, [], {
-            stdio: ['pipe', 'pipe', 'inherit'],
-            env: { CONNECTOR: 'FIXME' }
+            stdio: ["pipe", "pipe", "inherit"],
+            env: { CONNECTOR: "FIXME" },
         }), "f");
         __classPrivateFieldSet(this, _Connector_transformer, new Transform({
             objectMode: true,
@@ -62,12 +62,12 @@ export class Connector {
                     callback(null, JSON.parse(data));
                 }
                 catch (err) {
-                    callback(new Error(`Invalid JSON response: ${err instanceof Error ? err.message : 'Unknown error'}`));
+                    callback(new Error(`Invalid JSON response: ${err instanceof Error ? err.message : "Unknown error"}`));
                 }
-            }
+            },
         }), "f");
         if (!__classPrivateFieldGet(this, _Connector_process, "f").stdout) {
-            throw new Error('Process stdout is not available');
+            throw new Error("Process stdout is not available");
         }
         __classPrivateFieldGet(this, _Connector_process, "f").stdout.pipe(__classPrivateFieldGet(this, _Connector_transformer, "f"));
     }
@@ -81,20 +81,20 @@ export class Connector {
                 if (response.error) {
                     reject(new Error(response.error));
                 }
-                else if ('response' in response) {
+                else if ("response" in response) {
                     resolve(response.response);
                 }
                 else {
-                    reject(new Error('Invalid response structure from connector'));
+                    reject(new Error("Invalid response structure from connector"));
                 }
             };
-            __classPrivateFieldGet(this, _Connector_transformer, "f").once('data', handler);
-            __classPrivateFieldGet(this, _Connector_transformer, "f").once('error', reject);
+            __classPrivateFieldGet(this, _Connector_transformer, "f").once("data", handler);
+            __classPrivateFieldGet(this, _Connector_transformer, "f").once("error", reject);
             if (!__classPrivateFieldGet(this, _Connector_process, "f").stdin) {
-                reject(new Error('Process stdin is not available'));
+                reject(new Error("Process stdin is not available"));
                 return;
             }
-            __classPrivateFieldGet(this, _Connector_process, "f").stdin.write(JSON.stringify(request) + '\n');
+            __classPrivateFieldGet(this, _Connector_process, "f").stdin.write(JSON.stringify(request) + "\n");
         });
     }
     end() {
