@@ -18,15 +18,15 @@ import { Transform } from "node:stream";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /** @type {Record<string, string>} */
 const connectors = {
-    "darwin-keynote": "connectors/kn5.sh",
-    "darwin-keynote5": "connectors/kn5.sh",
-    "darwin-keynote6": "connectors/kn6.sh",
-    "darwin-powerpoint": "connectors/ppt2011.sh",
-    "darwin-powerpoint2011": "connectors/ppt2011.sh",
-    "darwin-powerpoint2016": "connectors/ppt2011.sh",
-    "win32-powerpoint": "connectors/ppt2010.bat",
-    "win32-powerpoint2010": "connectors/ppt2010.bat",
-    "win32-powerpoint2013": "connectors/ppt2010.bat",
+    "darwin-keynote": "connectors/connector-osx-kn5.sh",
+    "darwin-keynote5": "connectors/connector-osx-kn5.sh",
+    "darwin-keynote6": "connectors/connector-osx-kn6.sh",
+    "darwin-powerpoint": "connectors/connector-osx-ppt2011.sh",
+    "darwin-powerpoint2011": "connectors/connector-osx-ppt2011.sh",
+    "darwin-powerpoint2016": "connectors/connector-osx-ppt2011.sh",
+    "win32-powerpoint": "connectors/connector-win-ppt2010.bat",
+    "win32-powerpoint2010": "connectors/connector-win-ppt2010.bat",
+    "win32-powerpoint2013": "connectors/connector-win-ppt2010.bat",
 };
 /**
  * @typedef {Object} ConnectorResponse
