@@ -16,7 +16,9 @@
     }
   },
   "scripts": {
-    "build": "tsc --project jsconfig.json",
+    "prebuild": "rm -rf dist",
+    "build": "tsc --project jsconfig.json && npm run copy-connectors",
+    "copy-connectors": "cp -r src/connectors dist/",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js --fix",
     "clean": "rimraf dist",
