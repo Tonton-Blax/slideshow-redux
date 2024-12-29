@@ -28,7 +28,8 @@ export class Slideshow {
     }
 
     /**
-     * @private
+     * Internal method for handling requests
+     * @internal
      * @param {Object} request - Request object
      * @returns {Promise<any>}
      */
