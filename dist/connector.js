@@ -51,11 +51,12 @@ export class Connector {
         __classPrivateFieldSet(this, _Connector_process, execa(filename, [], {
             stdio: ["pipe", "pipe", "inherit"],
             env: { CONNECTOR: "FIXME" },
+            encoding: "utf8"
         }), "f");
         __classPrivateFieldSet(this, _Connector_transformer, new Transform({
             objectMode: true,
             transform(chunk, encoding, callback) {
-                const data = chunk.toString().trim();
+                const data = chunk.trim();
                 if (!data)
                     return callback();
                 try {

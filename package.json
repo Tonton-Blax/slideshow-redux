@@ -4,7 +4,7 @@
   "author": "Maxime Redval",
   "type": "module",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=18.19.0"
   },
   "main": "./dist/slideshow-api.js",
   "types": "./dist/slideshow-api.d.ts",
@@ -28,7 +28,7 @@
     "test:ci": "vitest run"
   },
   "dependencies": {
-    "execa": "^8.0.1"
+    "execa": "^9.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

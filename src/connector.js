@@ -47,12 +47,13 @@ export class Connector {
     this.#process = execa(filename, [], {
       stdio: ["pipe", "pipe", "inherit"],
       env: { CONNECTOR: "FIXME" },
+      encoding: "utf8"
     });
 
     this.#transformer = new Transform({
       objectMode: true,
       transform(chunk, encoding, callback) {
-        const data = chunk.toString().trim();
+        const data = chunk.trim();
         if (!data) return callback();
         try {
           callback(null, JSON.parse(data));
